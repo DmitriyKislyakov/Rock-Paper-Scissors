@@ -2,7 +2,6 @@ let arr = ['rock', 'paper', 'scissors']
 let humanScore = 0
 let computerScore = 0
 
-
 function getComputerChoice() {
   return arr[Math.floor(Math.random() * arr.length)]
 }
@@ -15,9 +14,9 @@ function getHumanChoice() {
     return arr[1]
   else if (choice.toLowerCase() == 'scissors' || choice.toLowerCase() == 's')
     return arr[2]
-  else{
+  else {
     alert('Not rock-paper-scissors! Try again')
-    return getHumanChoice()    
+    return getHumanChoice()
   }
 }
 
@@ -27,7 +26,7 @@ function playRound(humanChoice, ComputerChoice) {
   if (humanChoice == 'rock') {
     ComputerChoice == 'paper'
       ? (console.log('You lose! Paper beats Rock'), computerScore++)
-      : (console.log('You win! Rock beats Scissors'), humanScore++) 
+      : (console.log('You win! Rock beats Scissors'), humanScore++)
   }
   if (humanChoice == 'paper') {
     ComputerChoice == 'scissors'
@@ -39,26 +38,29 @@ function playRound(humanChoice, ComputerChoice) {
       ? (console.log('You lose! Rock beats Scissors'), computerScore++)
       : (console.log('You win! Scissors beats Paper'), humanScore++)
   }
-
 }
 
-function playGame(){
-  for (let i=0; i<5; i++){
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
+function playGame() {
+  for (let i = 0; i < 5; i++) {
+    const humanSelection = getHumanChoice()
+    const computerSelection = getComputerChoice()
+    playRound(humanSelection, computerSelection)
     console.log(`${humanScore} : ${computerScore}`)
   }
-  if (humanScore == computerScore)
-    alert('DROW!')
-  if (humanScore > computerScore)
-    alert('You WIN!')
-  if (humanScore < computerScore)
-    alert('You LOSE!')
+  if (humanScore == computerScore) console.log('DROW!')
+  if (humanScore > computerScore) console.log('You WIN!')
+  if (humanScore < computerScore) console.log('You LOSE!')
 }
-
 
 //const humanSelection = getHumanChoice();
 //const computerSelection = getComputerChoice();
 
-playGame()
+//playGame()
+
+const buttons = document.querySelector('.buttons')
+
+console.log(buttons)
+
+function choice(button) {
+  return button.id
+}
