@@ -6,7 +6,8 @@ function getComputerChoice() {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
-function getHumanChoice() {
+function getHumanChoice(choice) {
+  /*
   let choice = prompt('Rock or Paper or Scissors?')
   if (choice.toLowerCase() == 'rock' || choice.toLowerCase() == 'r')
     return arr[0]
@@ -18,6 +19,8 @@ function getHumanChoice() {
     alert('Not rock-paper-scissors! Try again')
     return getHumanChoice()
   }
+  */
+  return choice
 }
 
 function playRound(humanChoice, ComputerChoice) {
@@ -57,10 +60,14 @@ function playGame() {
 
 //playGame()
 
-const buttons = document.querySelector('.buttons')
+const rock = document.querySelector("#rock")
+rock.addEventListener("click", () => {getHumanChoice("rock")})
 
-console.log(buttons)
+const paper = document.querySelector("#paper")
+paper.addEventListener("click", () => {getHumanChoice("paper")})
 
-function choice(button) {
-  return button.id
-}
+const scissors = document.querySelector("#scissors")
+scissors.addEventListener("click", () => {getHumanChoice("scissors")})
+
+const play = document.querySelector("#play")
+scissors.addEventListener("click", () => {getHumanChoice("scissors")})
