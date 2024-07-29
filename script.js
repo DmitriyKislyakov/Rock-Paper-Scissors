@@ -24,12 +24,18 @@ function getHumanChoice(choice) {
 }
 
 function playRound(humanChoice, ComputerChoice) {
-  if (humanChoice == ComputerChoice)
-    return console.log(`${humanChoice}, ${ComputerChoice} - DRAW`)
+  let you = ''
+  let explain = ''
+  let roundResult = [humanScore, computerScore, you, explain, humanChoice, ComputerChoice]
+  if (humanChoice == ComputerChoice) {
+    you = 'DRAW'
+    explain = `${humanChoice} x ${ComputerChoice}`
+  }
+
   if (humanChoice == 'rock') {
     ComputerChoice == 'paper'
-      ? (console.log('You lose! Paper beats Rock'), computerScore++)
-      : (console.log('You win! Rock beats Scissors'), humanScore++)
+      ? (you = 'You lose!', explain = 'Paper beats Rock', computerScore++)
+      : (you = 'You win!', explain = 'Rock beats Scissors', humanScore++)
   }
   if (humanChoice == 'paper') {
     ComputerChoice == 'scissors'
@@ -41,9 +47,11 @@ function playRound(humanChoice, ComputerChoice) {
       ? (console.log('You lose! Rock beats Scissors'), computerScore++)
       : (console.log('You win! Scissors beats Paper'), humanScore++)
   }
+  return console.log(roundResult)
 }
 
 function playGame() {
+  /*
   for (let i = 0; i < 5; i++) {
     const humanSelection = getHumanChoice()
     const computerSelection = getComputerChoice()
@@ -53,6 +61,9 @@ function playGame() {
   if (humanScore == computerScore) console.log('DROW!')
   if (humanScore > computerScore) console.log('You WIN!')
   if (humanScore < computerScore) console.log('You LOSE!')
+  */
+  humanScore = computerScore = 0
+  
 }
 
 //const humanSelection = getHumanChoice();
@@ -61,13 +72,20 @@ function playGame() {
 //playGame()
 
 const rock = document.querySelector("#rock")
-rock.addEventListener("click", () => {getHumanChoice("rock")})
+rock.addEventListener("click", () => {playRound(getHumanChoice("rock"), getComputerChoice())})
 
 const paper = document.querySelector("#paper")
-paper.addEventListener("click", () => {getHumanChoice("paper")})
+paper.addEventListener("click", () => {playRound(getHumanChoice("paper"), getComputerChoice())})
 
 const scissors = document.querySelector("#scissors")
-scissors.addEventListener("click", () => {getHumanChoice("scissors")})
+scissors.addEventListener("click", () => {playRound(getHumanChoice("scissors"), getComputerChoice())})
 
 const play = document.querySelector("#play")
-scissors.addEventListener("click", () => {getHumanChoice("scissors")})
+scissors.addEventListener("click", () => {playGame})
+
+const container = document.querySelector(".container")
+
+const scoreContent = document.createElement("h1")
+scoreContent.classList.add("scoreContent")
+scoreContent.textContent = `${humanScore} : ${computerScore}`
+container.appendChild(scoreContent)
